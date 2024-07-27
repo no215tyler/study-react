@@ -8,12 +8,10 @@ const inter = Inter({ subsets: ["latin"] });
 export function Main(props: any) {
   // マウント処理
   useEffect(() => {
-    console.log('マウント時');
     document.body.style.backgroundColor = "lightblue";
     
     // アンマウント処理
     return () => {
-      console.log('アンマウント時');
       document.body.style.backgroundColor = "";      
     }
   }, []);
