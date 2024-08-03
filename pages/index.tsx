@@ -9,6 +9,7 @@ export default function Home() {
   const[count, setCount] = useState<number>(1);
   const[text, setText] = useState<string>('');
   const[isShow, setIsShow] = useState<boolean>(true);
+  const[array, setArray] = useState<any[]>([]);
 
   const handleClick = useCallback(() => {
     if (count < 10) {
@@ -27,6 +28,16 @@ export default function Home() {
   const handleDisplay = useCallback((): void => {
     setIsShow((prevIsShow: boolean): boolean => !prevIsShow);
   }, [isShow]);
+
+  const handleAdd = useCallback(() => {
+    setArray((prevArray) => {
+      if (prevArray.some((item) => item === text)) {
+        alert("同じ要素が既に存在します。")
+        return prevArray;
+      }
+      return [...prevArray, text];
+    });
+  }, [text]);
 
   // マウント処理
   useEffect(() => {
@@ -62,6 +73,14 @@ export default function Home() {
           className="text-black"
           onChange={handleChange}
         />
+        <button onClick={handleAdd} className="p-2 m-1 bg-blue-950 shadow-lg shadow-slate-500 rounded-md font-bold">
+          追加
+        </button>
+        <ul>
+          {array.map((item) => {
+            return <li key="{item}">{item}</li>;
+          })}
+        </ul>
       </div>
       <Main page="index" />
     </>
