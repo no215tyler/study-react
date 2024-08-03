@@ -12,7 +12,7 @@ export default function Home() {
 
   const handleClick = useCallback(() => {
     if (count < 10) {
-      setCount((count: number) => count + 1);
+      setCount((prevCount: number) => prevCount + 1);
     }
   }, [count]);
 
@@ -25,7 +25,7 @@ export default function Home() {
   }, []);
 
   const handleDisplay = useCallback((): void => {
-    setIsShow((isShow: boolean): boolean => !isShow);
+    setIsShow((prevIsShow: boolean): boolean => !prevIsShow);
   }, [isShow]);
 
   // マウント処理
