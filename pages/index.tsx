@@ -1,56 +1,24 @@
 import { Inter } from "next/font/google";
 import { Main } from "@/components/Main";
 import { Header } from "@/components/Header";
-import { useCallback, useEffect, useState } from "react";
+import { useCounter } from "@/hooks/useCounter";
+import { useInputArray } from "@/hooks/useInputArray";
+import { useBgLightBlue } from "@/hooks/useBgLightBlue";
 
 const inter = Inter({ subsets: ["latin"] });
 
+// ######################################
+// export文
+// ######################################
 export default function Home() {
-  const[count, setCount] = useState<number>(1);
-  const[text, setText] = useState<string>('');
-  const[isShow, setIsShow] = useState<boolean>(true);
-  const[array, setArray] = useState<any[]>([]);
+  const { count, isShow, handleClick, handleDisplay } = useCounter();
+  const { text, array, handleChange, handleAdd } = useInputArray();
+  useBgLightBlue();
 
-  const handleClick = useCallback(() => {
-    if (count < 10) {
-      setCount((prevCount: number) => prevCount + 1);
-    }
-  }, [count]);
 
-  const handleChange = useCallback((e: any): void => {
-    if (e.target.value.length > 5) {
-      alert("5文字以内にしてください")
-      return;
-    }
-    setText(e.target.value.trim());
-  }, []);
-
-  const handleDisplay = useCallback((): void => {
-    setIsShow((prevIsShow: boolean): boolean => !prevIsShow);
-  }, [isShow]);
-
-  const handleAdd = useCallback(() => {
-    setArray((prevArray) => {
-      if (prevArray.some((item) => item === text)) {
-        alert("同じ要素が既に存在します。")
-        return prevArray;
-      }
-      return [...prevArray, text];
-    });
-  }, [text]);
-
-  // マウント処理
-  useEffect(() => {
-    console.log(`マウント時: ${count}`);
-    document.body.style.backgroundColor = "lightblue";
-    
-    // アンマウント処理
-    return () => {
-      console.log(`アンマウント時: ${count}`);
-      document.body.style.backgroundColor = "";      
-    }
-  }, [count]); // , [count, foo, bar, hoge] この変数の値に変更が生じた場合にuseEffectの処理が走る
-
+  // ######################################
+  // JSX return文
+  // ######################################
   return (
     <>
       <Header />
