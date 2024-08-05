@@ -2,12 +2,11 @@ import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export function Links(props: any) {
-  const {items, handleReduce} = props;
+export const Links = (props: any) => {
   return (
     <div className="mb-32 grid place-conte text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-      <button onClick={handleReduce} className="z-10 p-2 m-1 w-28 mx-auto bg-blue-950 shadow-lg shadow-slate-500 rounded-md font-bold">減らす</button>
-      {items.map((item: {href: string; title: string; description: string;}) => {
+      <button onClick={props.handleReduce} className="z-10 p-2 m-1 w-28 mx-auto bg-blue-950 shadow-lg shadow-slate-500 rounded-md font-bold">減らす</button>
+      {props.items.map((item: {href: string; title: string; description: string;}) => {
         return (
           <a
             key={item.href}

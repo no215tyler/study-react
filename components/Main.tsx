@@ -24,7 +24,7 @@ const ITEMS: {href: string; title: string; description: string;}[] = [
 
 const inter = Inter({ subsets: ["latin"] });
 
-export function Main(props: any) {
+export const Main = (props: any) => {
   const [items, setItems] = useState(ITEMS);
   const handleReduce = useCallback(() => {
     console.log(items);
