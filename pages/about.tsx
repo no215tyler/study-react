@@ -5,13 +5,13 @@ import { Header } from "@/components/Header";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function About(props: any) {
-  const { count, isShow, handleClick, handleDisplay, text, array, handleChange, handleAdd } = props;
+  const { doubleCount, isShow, handleClick, handleDisplay, text, array, handleChange, handleAdd } = props;
 
   return (
     <>
       <Header />
       <div className="flex justify-center flex-col items-center">
-        {isShow ? <h1 className="text-center font-bold p-3 px-4 mt-1 bg-blue-900 rounded-full">{count}</h1> : null}
+        {isShow ? <h1 className="text-center font-bold p-3 px-4 mt-1 bg-blue-900 rounded-full">{doubleCount}</h1> : null}
         <button
          onClick={handleClick} 
          className="p-2 m-1 bg-blue-950 shadow-lg shadow-slate-500 rounded-md font-bold"
