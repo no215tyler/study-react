@@ -2,29 +2,12 @@ import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const ITEMS: {href: string; title: string; description: string;}[] = [
-  { href: "https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app",
-    title: "Docs ",
-    description: "Find in-depth information about Next.js features and API."
-  },
-  { href: "https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app",
-    title: "Learn ",
-    description: "Learn about Next.js in an interactive course with quizzes!"
-  },
-  { href: "https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app",
-    title: "Templates ",
-    description: "Discover and deploy boilerplate example Next.js projects."
-  },
-  { href: "https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app",
-    title: "Deploy ",
-    description: "Instantly deploy your Next.js site to a shareable URL with Vercel."
-  },
-];
-
-export function Links() {
+export function Links(props: any) {
+  const {items, handleReduce} = props;
   return (
-    <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-      {ITEMS.map((item: {href: string; title: string; description: string;}) => {
+    <div className="mb-32 grid place-conte text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
+      <button onClick={handleReduce} className="z-10 p-2 m-1 w-28 mx-auto bg-blue-950 shadow-lg shadow-slate-500 rounded-md font-bold">減らす</button>
+      {items.map((item: {href: string; title: string; description: string;}) => {
         return (
           <a
             key={item.href}
